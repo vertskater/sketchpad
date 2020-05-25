@@ -1,0 +1,1 @@
+A JavaScript project to create a "sketchpad" within a html-grid to draw on.
