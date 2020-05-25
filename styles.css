@@ -1,0 +1,29 @@
+.container {
+  width: 1000px;
+  border: 1px solid #000000;
+  margin: auto;
+  display: -ms-grid;
+  display: grid;
+}
+
+.page-heading {
+  text-align: center;
+}
+
+#reset {
+  padding: 10px;
+  margin: auto;
+  display: block;
+  margin-bottom: 20px;
+}
+
+#reset:hover {
+  background-color: #aaaaaa;
+  border-radius: 1px;
+  border: solid 2px gray;
+}
+
+#reset:active {
+  background-color: white;
+}
+/*# sourceMappingURL=styles.css.map */

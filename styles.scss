@@ -1,0 +1,25 @@
+.container{
+    width: 1000px;
+    border: 1px solid #000000;
+    margin: auto;
+    display: grid;
+    //grid-template-columns: repeat(16, 1fr);
+}
+.page-heading{
+    text-align: center;
+}
+#reset{
+    padding: 10px;
+    margin: auto;
+    display: block;
+    margin-bottom: 20px;
+    &:hover{
+        background-color: #aaaaaa;
+        border-radius: 1px;
+        border: solid 2px gray;
+    }
+    &:active{
+        background-color: white;
+
+    }
+}
