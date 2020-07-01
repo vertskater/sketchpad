@@ -13,9 +13,6 @@ class Grid {
     }
 
     create(columnsQuantity) {
-        if (columnsQuantity === undefined) { 
-            columnsQuantity = 17;
-        }
         this.delete();
         let width = (1000 / columnsQuantity) - 2;
         let height = width;
@@ -30,6 +27,32 @@ class Grid {
         }
         this.allDivs = document.querySelectorAll('.smallDiv');
     }
+    
+    addColour() {
+        this.allDivs.forEach(div => {
+            div.addEventListener('mouseover', (e) => {
+    //not finished yet
+                console.log(div.style.backgroundColor);
+                if (div.style.backgroundColor !== "rgb(255, 255, 255)") {  
+                    bgRed -= 20;
+                    bgGreen -= 20;
+                    bgBlue -= 20;
+                } else {
+                    bgRed = this.randomiseColour();
+                    bgGreen = this.randomiseColour();
+                    bgBlue = this.randomiseColour();
+                }
+                bgColor = "rgb(" + bgRed + "," + bgGreen + "," + bgBlue + ")";
+                div.style.backgroundColor = bgColor;
+    
+            })
+        });
+    }
+
+    randomiseColour() {
+        let colorValue = Math.floor(Math.random() * 255);
+        return colorValue;
+    }
 
     delete() {
         if ((this.newGrid === "") || (this.allDivs === undefined)) 
@@ -42,7 +65,8 @@ class Grid {
 }
 
 var grid = new Grid();
-grid.create();
+grid.create(17);
+grid.addColour();
 
 btnReset.addEventListener('click', () => {
     /*allDivs.forEach(div => {
@@ -52,34 +76,8 @@ btnReset.addEventListener('click', () => {
     newGrid = prompt("How Many Columns do you want?");
     newGrid = parseInt(newGrid);
     grid.create(newGrid);
-    addColor();
+    grid.addColor();
 })
 addColor()
-function addColor() {
-    grid.allDivs.forEach(div => {
-        div.addEventListener('mouseover', (e) => {
-//not finished yet
-            console.log(div.style.backgroundColor);
-            if (div.style.backgroundColor !== "rgb(255, 255, 255)") {
-                
-                bgRed -= 20;
-                bgGreen -= 20;
-                bgBlue -= 20;
-                bgColor = "rgb(" + bgRed + "," + bgGreen + "," + bgBlue + ")";
-                div.style.backgroundColor = bgColor;
-            } else {
-                bgRed = randome();
-                bgGreen = randome();
-                bgBlue = randome();
-                bgColor = "rgb(" + bgRed + "," + bgGreen + "," + bgBlue + ")";
-                div.style.backgroundColor = bgColor;
-            }
 
-        })
-    });
-}
 
-function randome() {
-    let colorValue = Math.floor(Math.random() * 255);
-    return colorValue;
-}
