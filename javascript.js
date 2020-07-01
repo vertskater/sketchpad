@@ -1,69 +1,62 @@
 'use strict'
 const drawpad = document.getElementById('drawpad');
 const btnReset = document.getElementById('reset');
-let newGrid = "";
-let allDivs;
+let newGrid = 0;
 let bgRed = 0;
 let bgGreen = 0;
 let bgBlue = 0;
 let bgColor;
 
-createGrid()
-
-
-function createGrid(columnsQuantity) {
-    if (columnsQuantity === undefined) {
-        deleteGrid();
-        drawpad.style.gridTemplateColumns = "repeat(16, 1fr)";
-        for (let i = 1; i < 17; i++) {
-            for (let j = 1; j < 17; j++) {
-
-                const div = document.createElement('div');
-                div.style.cssText = "width: 60.5px; height: 60.5px; border: 1px solid #000000; background-color: #ffffff;";
-                div.classList.add('smallDiv');
-                drawpad.appendChild(div);
-            }
-        }
-        allDivs = document.querySelectorAll('.smallDiv');
+class Grid {
+    constructor() {
+        this.allDivs = undefined;
     }
-    else {
-        deleteGrid();
+
+    create(columnsQuantity) {
+        if (columnsQuantity === undefined) { 
+            columnsQuantity = 17;
+        }
+        this.delete();
         let width = (1000 / columnsQuantity) - 2;
         let height = width;
         drawpad.style.gridTemplateColumns = "repeat(" + columnsQuantity + ", 1fr)";
         for (let i = 1; i < (columnsQuantity + 1); i++) {
             for (let j = 1; j < (columnsQuantity + 1); j++) {
-                const div = document.createElement('div');
+                let div = document.createElement('div');
                 div.style.cssText = "width: " + width + "px; height: " + height + "px; border: 1px solid #000000; background-color: #ffffff;";
                 div.classList.add('smallDiv');
                 drawpad.appendChild(div);
             }
         }
-        allDivs = document.querySelectorAll('.smallDiv');
+        this.allDivs = document.querySelectorAll('.smallDiv');
+    }
+
+    delete() {
+        if ((this.newGrid === "") || (this.allDivs === undefined)) 
+            return;
+        this.allDivs.forEach(div => {
+            drawpad.removeChild(div);
+        });
+        this.allDivs = undefined;
     }
 }
 
-function deleteGrid() {
-    if ((newGrid === "") || (allDivs === undefined)) return;
-    allDivs.forEach(div => {
-        drawpad.removeChild(div);
-    });
-    allDivs = undefined;
-}
+var grid = new Grid();
+grid.create();
 
 btnReset.addEventListener('click', () => {
     /*allDivs.forEach(div => {
         div.style.backgroundColor = "white";
     });*/
-    deleteGrid();
+    //grid.delete();
     newGrid = prompt("How Many Columns do you want?");
     newGrid = parseInt(newGrid);
-    createGrid(newGrid);
+    grid.create(newGrid);
     addColor();
 })
 addColor()
 function addColor() {
-    allDivs.forEach(div => {
+    grid.allDivs.forEach(div => {
         div.addEventListener('mouseover', (e) => {
 //not finished yet
             console.log(div.style.backgroundColor);
