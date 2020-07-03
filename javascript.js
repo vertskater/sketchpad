@@ -8,25 +8,10 @@ let bgGreen = 0;
 let bgBlue = 0;
 let bgColor;
 
-createGrid()
+createGrid(16);
 
 
-function createGrid(columnsQuantity) {
-    if (columnsQuantity === undefined) {
-        deleteGrid();
-        drawpad.style.gridTemplateColumns = "repeat(16, 1fr)";
-        for (let i = 1; i < 17; i++) {
-            for (let j = 1; j < 17; j++) {
-
-                const div = document.createElement('div');
-                div.style.cssText = "width: 60.5px; height: 60.5px; border: 1px solid #000000; background-color: #ffffff;";
-                div.classList.add('smallDiv');
-                drawpad.appendChild(div);
-            }
-        }
-        allDivs = document.querySelectorAll('.smallDiv');
-    }
-    else {
+function createGrid(columnsQuantity) {   
         deleteGrid();
         let width = (1000 / columnsQuantity) - 2;
         let height = width;
@@ -39,8 +24,7 @@ function createGrid(columnsQuantity) {
                 drawpad.appendChild(div);
             }
         }
-        allDivs = document.querySelectorAll('.smallDiv');
-    }
+        allDivs = document.querySelectorAll('.smallDiv');  
 }
 
 function deleteGrid() {
