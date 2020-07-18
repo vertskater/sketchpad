@@ -2,17 +2,20 @@
 const drawpad = document.getElementById('drawpad');
 const btnReset = document.getElementById('reset');
 let newGrid = "";
-let allDivs;
-let bgRed = 0;
-let bgGreen = 0;
-let bgBlue = 0;
-let bgColor;
 
-createGrid(16);
-
-
-function createGrid(columnsQuantity) {   
-        deleteGrid();
+class Grid {
+    constructor(){
+        this.allDivs = undefined;
+        this.bgRed = 0;
+        this.bgGreen = 0;
+        this.bgBlue = 0;
+        this.bgColor;
+    }
+    create(columnsQuantity){
+        if(columnsQuantity === undefined){
+            columnsQuantity = 16;
+        }
+        this.delete();
         let width = (1000 / columnsQuantity) - 2;
         let height = width;
         drawpad.style.gridTemplateColumns = "repeat(" + columnsQuantity + ", 1fr)";
@@ -24,53 +27,50 @@ function createGrid(columnsQuantity) {
                 drawpad.appendChild(div);
             }
         }
-        allDivs = document.querySelectorAll('.smallDiv');  
-}
-
-function deleteGrid() {
-    if ((newGrid === "") || (allDivs === undefined)) return;
-    allDivs.forEach(div => {
-        drawpad.removeChild(div);
-    });
-    allDivs = undefined;
+        this.allDivs = document.querySelectorAll('.smallDiv');  
+        this.addColor();
+    }
+    addColor() {
+        this.allDivs.forEach(div => {
+            div.addEventListener('mouseover', (e) => {
+    //not finished yet
+                console.log(div.style.backgroundColor);
+                if (div.style.backgroundColor !== "rgb(255, 255, 255)") {               
+                    this.bgRed -= 20;
+                    this.bgGreen -= 20;
+                    this.bgBlue -= 20;
+                    this.bgColor = "rgb(" + this.bgRed + "," + this.bgGreen + "," + this.bgBlue + ")";
+                    div.style.backgroundColor = this.bgColor;
+                } else {
+                    this.bgRed = this.randome();
+                    this.bgGreen = this.randome();
+                    this.bgBlue = this.randome();
+                    this.bgColor = "rgb(" + this.bgRed + "," + this.bgGreen + "," + this.bgBlue + ")";
+                    div.style.backgroundColor = this.bgColor;
+                }
+            })
+        });
+    }
+    delete() {
+        if ((this.newGrid === "") || (this.allDivs === undefined)) return;
+        this.allDivs.forEach(div => {
+            drawpad.removeChild(div);
+        });
+        this.allDivs = undefined;
+    }
+    randome() {
+        let colorValue = Math.floor(Math.random() * 255);
+        return colorValue;
+    }
 }
 
 btnReset.addEventListener('click', () => {
-    /*allDivs.forEach(div => {
-        div.style.backgroundColor = "white";
-    });*/
-    deleteGrid();
+    //grid.delete();
     newGrid = prompt("How Many Columns do you want?");
     newGrid = parseInt(newGrid);
-    createGrid(newGrid);
-    addColor();
+    grid.create(newGrid);
+    grid.addColor();
 })
-addColor()
-function addColor() {
-    allDivs.forEach(div => {
-        div.addEventListener('mouseover', (e) => {
-//not finished yet
-            console.log(div.style.backgroundColor);
-            if (div.style.backgroundColor !== "rgb(255, 255, 255)") {
-                
-                bgRed -= 20;
-                bgGreen -= 20;
-                bgBlue -= 20;
-                bgColor = "rgb(" + bgRed + "," + bgGreen + "," + bgBlue + ")";
-                div.style.backgroundColor = bgColor;
-            } else {
-                bgRed = randome();
-                bgGreen = randome();
-                bgBlue = randome();
-                bgColor = "rgb(" + bgRed + "," + bgGreen + "," + bgBlue + ")";
-                div.style.backgroundColor = bgColor;
-            }
+let grid = new Grid();
+grid.create();
 
-        })
-    });
-}
-
-function randome() {
-    let colorValue = Math.floor(Math.random() * 255);
-    return colorValue;
-}
