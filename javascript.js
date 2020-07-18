@@ -42,9 +42,9 @@ class Grid {
                     this.bgColor = "rgb(" + this.bgRed + "," + this.bgGreen + "," + this.bgBlue + ")";
                     div.style.backgroundColor = this.bgColor;
                 } else {
-                    this.bgRed = this.randome();
-                    this.bgGreen = this.randome();
-                    this.bgBlue = this.randome();
+                    this.bgRed = this.random();
+                    this.bgGreen = this.random();
+                    this.bgBlue = this.random();
                     this.bgColor = "rgb(" + this.bgRed + "," + this.bgGreen + "," + this.bgBlue + ")";
                     div.style.backgroundColor = this.bgColor;
                 }
