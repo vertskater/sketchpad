@@ -58,7 +58,7 @@ class Grid {
         });
         this.allDivs = undefined;
     }
-    randome() {
+    random() {
         let colorValue = Math.floor(Math.random() * 255);
         return colorValue;
     }
