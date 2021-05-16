@@ -1,6 +1,6 @@
 'use strict'
-const drawpad = document.getElementById('drawpad');
-const btnReset = document.getElementById('reset');
+const drawpad = document.querySelector('#drawpad');
+const btnReset = document.querySelector('#reset');
 let newGrid = "";
 
 class Grid {
