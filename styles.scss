@@ -1,25 +1,68 @@
-.container{
-    width: 1000px;
-    border: 1px solid #000000;
-    margin: auto;
-    display: grid;
-    //grid-template-columns: repeat(16, 1fr);
+.container {
+  width: 1000px;
+  border: 1px solid #000000;
+  margin: auto;
+  display: grid;
+  //grid-template-columns: repeat(16, 1fr);
 }
-.page-heading{
-    text-align: center;
+.page-heading {
+  text-align: center;
 }
-#reset{
-    padding: 10px;
-    margin: auto;
+#reset {
+  padding: 10px;
+  margin: auto;
+  display: block;
+  margin-bottom: 20px;
+  &:hover {
+    background-color: #aaaaaa;
+    border-radius: 1px;
+    border: solid 2px gray;
+  }
+  &:active {
+    background-color: white;
+  }
+}
+.color-choice {
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  .color-red,
+  .color-green,
+  .color-blue,
+  .color-random {
+    margin-left: 5px;
+    height: 50px;
+    width: 50px;
+    float: left;
+    cursor: pointer;
+    transition: outline 300ms ease-out;
+    &.active {
+      outline: 5px solid black;
+    }
+  }
+  .color-red {
+    background-color: red;
+  }
+  .color-green {
+    background-color: green;
+  }
+  .color-blue {
+    background-color: blue;
+  }
+  .color-random {
+    background: linear-gradient(45deg, red, blue, green);
+  }
+  .draw-color {
+    float: left;
+    margin-left: 10px;
+    line-height: 50px;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    font-size: 1.5em;
+  }
+  &::after {
+    content: "";
     display: block;
-    margin-bottom: 20px;
-    &:hover{
-        background-color: #aaaaaa;
-        border-radius: 1px;
-        border: solid 2px gray;
-    }
-    &:active{
-        background-color: white;
-
-    }
+    clear: both;
+  }
 }
