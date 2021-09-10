@@ -52,31 +52,59 @@ function addColor() {
   const rdmColorDiv = document.querySelector(".color-random");
   deleteClass();
   rdmColorDiv.classList.add("active");
+
   colorDivs(randomColor);
   const colorChoice = document.querySelector(".color-choice");
+  const form = document.querySelector(".color-form");
+  form.classList.remove("show-form");
+  resetFormInput(form);
   colorChoice.addEventListener("click", (e) => {
     let choice = e.target;
     if (choice.matches(".color-random")) {
       deleteClass();
+      form.classList.remove("show-form");
+      resetFormInput(form);
       choice.classList.add("active");
       colorDivs(randomColor);
     }
     if (choice.matches(".color-red")) {
       deleteClass();
+      form.classList.remove("show-form");
+      resetFormInput(form);
       choice.classList.add("active");
       colorDivs(colorRed);
     }
     if (choice.matches(".color-green")) {
       deleteClass();
+      form.classList.remove("show-form");
+      resetFormInput(form);
       choice.classList.add("active");
       colorDivs(colorGreen);
     }
     if (choice.matches(".color-blue")) {
       deleteClass();
+      form.classList.remove("show-form");
+      resetFormInput(form);
       choice.classList.add("active");
       colorDivs(colorBlue);
     }
+    if (choice.matches(".color-user")) {
+      deleteClass();
+      choice.classList.add("active");
+      form.classList.add("show-form");
+      const formInput = form.children;
+      for (let input of formInput) {
+        input.style.height = "50px";
+      }
+      colorDivs(colorUserGenerated);
+    }
   });
+}
+function resetFormInput(form) {
+  const formInput = form.children;
+  for (let input of formInput) {
+    input.style.height = "0px";
+  }
 }
 function deleteClass() {
   const colorChoices = document.querySelectorAll(".color");
@@ -123,6 +151,13 @@ function colorBlue(div) {
   let bgRed = 0;
   let bgGreen = 0;
   let bgBlue = 255;
+  let bgColor = "rgb(" + bgRed + "," + bgGreen + "," + bgBlue + ")";
+  div.style.backgroundColor = bgColor;
+}
+function colorUserGenerated(div) {
+  let bgRed = document.querySelector("#input-red").value;
+  let bgGreen = document.querySelector("#input-green").value;
+  let bgBlue = document.querySelector("#input-blue").value;
   let bgColor = "rgb(" + bgRed + "," + bgGreen + "," + bgBlue + ")";
   div.style.backgroundColor = bgColor;
 }

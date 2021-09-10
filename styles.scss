@@ -29,7 +29,8 @@
   .color-red,
   .color-green,
   .color-blue,
-  .color-random {
+  .color-random,
+  .color-user {
     margin-left: 5px;
     height: 50px;
     width: 50px;
@@ -52,6 +53,10 @@
   .color-random {
     background: linear-gradient(45deg, red, blue, green);
   }
+  .color-user {
+    background: radial-gradient(orange, red);
+    border-radius: 50%;
+  }
   .draw-color {
     float: left;
     margin-left: 10px;
@@ -65,4 +70,22 @@
     display: block;
     clear: both;
   }
+}
+.color-form {
+  width: 1000px;
+  margin: auto;
+  height: 0;
+  padding: 0;
+  opacity: 0;
+  transition: all 300ms ease-in-out;
+  input[type="number"] {
+    display: block;
+    height: 0px;
+    width: 100%;
+  }
+}
+.show-form {
+  height: auto;
+  padding: 40px 0 40px 0;
+  opacity: 1;
 }
