@@ -1,29 +1,203 @@
-.container {
-  width: 1000px;
-  border: 1px solid #000000;
-  margin: auto;
-  display: -ms-grid;
-  display: grid;
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+/* ── Reset ────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Base ─────────────────────────────────────────────── */
+body {
+  min-height: 100vh;
+  background: #f5f3ff;
+  background-image:
+    radial-gradient(ellipse 70% 40% at 10% 0%,  rgba(167, 139, 250, 0.18), transparent),
+    radial-gradient(ellipse 60% 50% at 90% 100%, rgba(99,  202, 255, 0.15), transparent);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 20px 72px;
+  color: #1e1b4b;
+}
+
+/* ── Header ───────────────────────────────────────────── */
+header {
+  text-align: center;
+  margin-bottom: 32px;
 }
 
 .page-heading {
-  text-align: center;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 50%, #0ea5e9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.15;
 }
 
-#reset {
-  padding: 10px;
-  margin: auto;
-  display: block;
-  margin-bottom: 20px;
+.page-sub {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #a5b4fc;
 }
 
-#reset:hover {
-  background-color: #aaaaaa;
-  border-radius: 1px;
-  border: solid 2px gray;
+/* ── Toolbar ──────────────────────────────────────────── */
+.toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  border-radius: 16px;
+  padding: 10px 16px;
+  margin-bottom: 28px;
+  max-width: min(640px, 94vw);
+  width: 100%;
+  box-shadow:
+    0 1px 3px rgba(99, 102, 241, 0.08),
+    0 8px 24px rgba(99, 102, 241, 0.08);
 }
 
-#reset:active {
-  background-color: white;
+/* ── Buttons ──────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 10px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  outline: none;
+  white-space: nowrap;
 }
-/*# sourceMappingURL=styles.css.map */
+
+/* Default state */
+.btn {
+  background: #f1f0ff;
+  color: #4f46e5;
+  border-color: rgba(99, 102, 241, 0.2);
+}
+.btn:hover {
+  background: #e0e7ff;
+  border-color: rgba(99, 102, 241, 0.35);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.18);
+}
+.btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Active / selected state */
+.btn--active {
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 3px 12px rgba(99, 102, 241, 0.35);
+}
+.btn--active:hover {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  box-shadow: 0 5px 18px rgba(99, 102, 241, 0.4);
+}
+
+/* Outline (Reset button) */
+.btn--outline {
+  background: transparent;
+  color: #6b7280;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+.btn--outline:hover {
+  background: #f9fafb;
+  color: #374151;
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Color Picker ─────────────────────────────────────── */
+.color-picker-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: #f8f7ff;
+  border: 1.5px solid rgba(99, 102, 241, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.color-picker-wrap:hover {
+  background: #f1f0ff;
+  border-color: rgba(99, 102, 241, 0.35);
+}
+
+.color-picker-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #4f46e5;
+  letter-spacing: 0.04em;
+  user-select: none;
+}
+
+#colorPicker {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  outline: none;
+}
+#colorPicker::-webkit-color-swatch-wrapper { padding: 0; }
+#colorPicker::-webkit-color-swatch {
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1.5px rgba(99, 102, 241, 0.3), 0 2px 6px rgba(0,0,0,0.12);
+}
+
+/* ── Drawpad / Grid ───────────────────────────────────── */
+.container {
+  width: min(640px, 94vw);
+  aspect-ratio: 1;
+  display: grid;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+  border: 1.5px solid rgba(99, 102, 241, 0.15);
+  box-shadow:
+    0 2px 6px rgba(99, 102, 241, 0.06),
+    0 16px 48px rgba(99, 102, 241, 0.1),
+    0 32px 80px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Grid Cells ───────────────────────────────────────── */
+.smallDiv {
+  background-color: #fff;
+  border: 1px solid rgba(99, 102, 241, 0.07);
+  cursor: crosshair;
+  transition: background-color 0.05s ease;
+}
+.smallDiv:hover {
+  outline: 1px solid rgba(99, 102, 241, 0.15);
+  outline-offset: -1px;
+}
+
+/* ── Scrollbar ────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f5f3ff; }
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.25);
+  border-radius: 4px;
+}
