@@ -1,25 +1,145 @@
-.container{
-    width: 1000px;
-    border: 1px solid #000000;
-    margin: auto;
-    display: grid;
-    //grid-template-columns: repeat(16, 1fr);
-}
-.page-heading{
-    text-align: center;
-}
-#reset{
-    padding: 10px;
-    margin: auto;
-    display: block;
-    margin-bottom: 20px;
-    &:hover{
-        background-color: #aaaaaa;
-        border-radius: 1px;
-        border: solid 2px gray;
-    }
-    &:active{
-        background-color: white;
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap');
 
-    }
+// ── Variables ──────────────────────────────────────────
+$bg-base:        #0a0a0f;
+$bg-grid:        #111118;
+$accent-purple:  #7c3aed;
+$accent-indigo:  #4f46e5;
+$accent-sky:     #38bdf8;
+$text-dim:       rgba(148, 163, 184, 0.6);
+$border-subtle:  rgba(129, 140, 248, 0.2);
+
+// ── Reset & Base ───────────────────────────────────────
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: $bg-base;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(120, 60, 255, 0.25), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 110%, rgba(0, 200, 255, 0.15), transparent);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px 60px;
+  color: #e0e0ff;
+}
+
+// ── Heading ────────────────────────────────────────────
+.page-heading {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #c084fc 0%, #818cf8 40%, $accent-sky 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 20px rgba(129, 140, 248, 0.4));
+
+  &::after {
+    content: 'hover to draw · click reset to resize';
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    -webkit-text-fill-color: $text-dim;
+    color: $text-dim;
+    filter: none;
+    margin-top: 6px;
+  }
+}
+
+// ── Reset Button ───────────────────────────────────────
+#reset {
+  position: relative;
+  display: block;
+  margin: 28px auto 36px;
+  padding: 14px 40px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(135deg, $accent-purple, $accent-indigo);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(129, 140, 248, 0.3),
+    0 4px 20px rgba(79, 70, 229, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent 60%);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 0 1px rgba(167, 139, 250, 0.5),
+      0 8px 30px rgba(99, 102, 241, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  &:active {
+    transform: translateY(0);
+    background: linear-gradient(135deg, #6d28d9, #4338ca);
+    box-shadow:
+      0 0 0 1px rgba(129, 140, 248, 0.3),
+      0 2px 8px rgba(79, 70, 229, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+}
+
+// ── Drawpad Container ──────────────────────────────────
+.container {
+  width: min(1000px, 95vw);
+  aspect-ratio: 1;
+  display: grid;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid $border-subtle;
+  background: $bg-grid;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.5),
+    0 25px 80px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(99, 102, 241, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+// ── Grid Cells ─────────────────────────────────────────
+.smallDiv {
+  transition: background-color 0.05s ease;
+  cursor: crosshair;
+
+  &:hover {
+    outline: 1px solid rgba(255, 255, 255, 0.08);
+    outline-offset: -1px;
+  }
+}
+
+// ── Scrollbar ──────────────────────────────────────────
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: $bg-base; }
+::-webkit-scrollbar-thumb {
+  background: rgba(129, 140, 248, 0.3);
+  border-radius: 4px;
 }

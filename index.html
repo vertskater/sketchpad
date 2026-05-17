@@ -4,14 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" rel="stylesheet" href="styles.css">
-    <title>sketchpad</title>
+    <title>Sketchpad</title>
 </head>
 <body>
-    <h1 class="page-heading">Etch-a-Scetch</h1>
-    <button id="reset">RESET/START</button>
-    <div id="drawpad" class="container">
+    <header>
+        <h1 class="page-heading">Etch-a-Sketch</h1>
+        <p class="page-sub">Hover over the grid to paint</p>
+    </header>
 
+    <div class="toolbar">
+        <button id="randomBtn" class="btn btn--active" title="Zufallsfarbe">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+            Zufallsfarbe
+        </button>
+
+        <label class="color-picker-wrap" title="Farbe wählen">
+            <span class="color-picker-label">Farbe</span>
+            <input type="color" id="colorPicker" value="#7c3aed">
+        </label>
+
+        <button id="reset" class="btn btn--outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.85"/></svg>
+            Reset
+        </button>
     </div>
+
+    <div id="drawpad" class="container"></div>
+
     <script type="text/javascript" src="javascript.js"></script>
 </body>
 </html>
